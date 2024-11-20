@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Country</title>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+  <%- include('partials/navbar', { page: 'editCountry' }) %>
+
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Edit Country: <%= country.commonName %></h1>
+
+    <form action="/editCountry" method="POST" class="space-y-4">
+      <input type="hidden" name="id" value="<%= country.id %>">
+
+      <div>
+        <label for="commonName" class="font-bold">Common Name:</label>
+        <input type="text" id="commonName" name="commonName" value="<%= country.commonName %>" class="input input-bordered w-full">
+      </div>
+
+      <div>
+        <label for="officialName" class="font-bold">Official Name:</label>
+        <input type="text" id="officialName" name="officialName" value="<%= country.officialName %>" class="input input-bordered w-full">
+      </div>
+
+      <div>
+        <label for="capital" class="font-bold">Capital:</label>
+        <input type="text" id="capital" name="capital" value="<%= country.capital %>" class="input input-bordered w-full">
+      </div>
+
+      <div>
+        <label for="population" class="font-bold">Population:</label>
+        <input type="number" id="population" name="population" value="<%= country.population %>" class="input input-bordered w-full">
+      </div>
+
+      <div>
+        <label for="area" class="font-bold">Area (km²):</label>
+        <input type="number" id="area" name="area" value="<%= country.area %>" class="input input-bordered w-full">
+      </div>
+
+      <div>
+        <label for="landlocked" class="font-bold">Landlocked:</label>
+        <select id="landlocked" name="landlocked" class="select select-bordered w-full">
+          <option value="true" <%= country.landlocked ? "selected" : "" %>>Yes</option>
+          <option value="false" <%= !country.landlocked ? "selected" : "" %>>No</option>
+        </select>
+      </div>
+
+      <div class="flex space-x-4">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="/countries" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
